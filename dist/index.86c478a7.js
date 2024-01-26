@@ -1,0 +1,4 @@
+async function e(){try{let e=await fetch("https://dahlgren.miun.se/ramschema_ht23.php"),t=await e.json();!function(e){let t=document.getElementById("frameworkTableBody");t.innerHTML="",e.forEach(e=>{let n=document.createElement("tr");n.innerHTML=`<td>${e.code}</td>
+                        <td>${e.coursename}</td>
+                        <td>${e.progression}</td>`,t.appendChild(n)})}(t)}catch(e){console.error("Error fetching data:",e)}}function t(){let e=document.getElementById("searchInput").value.toLowerCase();document.getElementById("frameworkTableBody").querySelectorAll("tr").forEach(t=>{let n=t.getElementsByTagName("td")[0].textContent.toLowerCase(),o=t.getElementsByTagName("td")[1].textContent.toLowerCase();n.includes(e)||o.includes(e)?t.style.display="":t.style.display="none"})}document.addEventListener("DOMContentLoaded",()=>{e(),document.getElementById("searchInput").addEventListener("input",t)});
+//# sourceMappingURL=index.86c478a7.js.map
