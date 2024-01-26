@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
     fetchDataAndPopulateTable();
+
+    // Add event listener to the search input
     document.getElementById('searchInput').addEventListener('input', filterTable);
+
+    // Add event listener to each table header cell for sorting
+    const headerCells = document.querySelectorAll('#frameworkTable th');
+    headerCells.forEach((cell, index) => {
+        cell.addEventListener('click', () => sortTable(index));
+    });
 });
 
 // Asynchronous function to fetch data and populate the table
@@ -37,6 +44,7 @@ function renderTable(data) {
 function sortTable(columnIndex) {
     const table = document.getElementById('frameworkTable');
     const rows = Array.from(document.getElementById('frameworkTableBody').querySelectorAll('tr'));
+    
     rows.sort((a, b) => {
         const cellA = a.getElementsByTagName('td')[columnIndex].textContent.trim();
         const cellB = b.getElementsByTagName('td')[columnIndex].textContent.trim();
