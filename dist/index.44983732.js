@@ -17,7 +17,6 @@ async function fetchDataAndPopulateTable() {
 function renderTable(data) {
     const tableBody = document.getElementById("frameworkTableBody");
     tableBody.innerHTML = "";
-    // Iterate over the data and create table rows with the course information
     data.forEach((course)=>{
         const row = document.createElement("tr");
         row.innerHTML = `<td>${course.code}</td>
@@ -30,13 +29,11 @@ function renderTable(data) {
 function sortTable(columnIndex) {
     const table = document.getElementById("frameworkTable");
     const rows = Array.from(document.getElementById("frameworkTableBody").querySelectorAll("tr"));
-    // Sorting
     rows.sort((a, b)=>{
         const cellA = a.getElementsByTagName("td")[columnIndex].textContent.trim();
         const cellB = b.getElementsByTagName("td")[columnIndex].textContent.trim();
         return cellA.localeCompare(cellB);
     });
-    // Clear
     table.tBodies[0].innerHTML = "";
     rows.forEach((row)=>table.tBodies[0].appendChild(row));
 }

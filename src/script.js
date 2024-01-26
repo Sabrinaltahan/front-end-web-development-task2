@@ -1,17 +1,18 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+    
     fetchDataAndPopulateTable();
-
     document.getElementById('searchInput').addEventListener('input', filterTable);
 });
 
 // Asynchronous function to fetch data and populate the table
 async function fetchDataAndPopulateTable() {
     try {
+        
         const response = await fetch('https://dahlgren.miun.se/ramschema_ht23.php');
         // Parse the JSON data from the response
         const data = await response.json();
 
+        
         renderTable(data);
     } catch (error) {
         console.error('Error fetching data:', error);
@@ -20,12 +21,9 @@ async function fetchDataAndPopulateTable() {
 
 // Function to render the table with the provided data
 function renderTable(data) {
-    
     const tableBody = document.getElementById('frameworkTableBody');
-    
     tableBody.innerHTML = '';
 
-    // Iterate over the data and create table rows with the course information
     data.forEach(course => {
         const row = document.createElement('tr');
         row.innerHTML = `<td>${course.code}</td>
@@ -37,18 +35,14 @@ function renderTable(data) {
 
 // Function to sort the table based on the specified column index
 function sortTable(columnIndex) {
-
     const table = document.getElementById('frameworkTable');
     const rows = Array.from(document.getElementById('frameworkTableBody').querySelectorAll('tr'));
-
-    // Sorting
     rows.sort((a, b) => {
         const cellA = a.getElementsByTagName('td')[columnIndex].textContent.trim();
         const cellB = b.getElementsByTagName('td')[columnIndex].textContent.trim();
         return cellA.localeCompare(cellB);
     });
 
-    // Clear
     table.tBodies[0].innerHTML = '';
     rows.forEach(row => table.tBodies[0].appendChild(row));
 }
@@ -58,7 +52,6 @@ function filterTable() {
     const input = document.getElementById('searchInput').value.toLowerCase();
     const rows = document.getElementById('frameworkTableBody').querySelectorAll('tr');
 
-    
     rows.forEach(row => {
         const courseCode = row.getElementsByTagName('td')[0].textContent.toLowerCase();
         const courseName = row.getElementsByTagName('td')[1].textContent.toLowerCase();
