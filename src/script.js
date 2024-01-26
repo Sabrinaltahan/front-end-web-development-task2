@@ -29,7 +29,7 @@ async function fetchDataAndPopulateTable() {
 // Function to render the table with the provided data
 function renderTable(data) {
     const tableBody = document.getElementById('frameworkTableBody');
-    tableBody.innerHTML = '';
+    tableBody.innerHTML = '';// clear old data
 
     data.forEach(course => {
         const row = document.createElement('tr');
@@ -51,7 +51,7 @@ function sortTable(columnIndex) {
         return cellA.localeCompare(cellB);
     });
 
-    table.tBodies[0].innerHTML = '';
+    table.tBodies[0].innerHTML = ''; // clear old data
     rows.forEach(row => table.tBodies[0].appendChild(row));
 }
 
